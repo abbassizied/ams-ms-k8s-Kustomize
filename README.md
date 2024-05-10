@@ -1,4 +1,4 @@
-# ams-ms-k8s-Kustomize
+# ams-ms-k8s-ziedab
 
 ## steps in killercoda:
 
