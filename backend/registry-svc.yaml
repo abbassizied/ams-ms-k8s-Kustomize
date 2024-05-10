@@ -6,6 +6,7 @@ metadata:
   namespace: ams-backend
 spec:
   serviceName: "eureka"
+  # n instances
   replicas: 1
   selector:
     matchLabels:
@@ -17,10 +18,16 @@ spec:
     spec:
       containers:
       - name: eureka
-        image: sipacademy2024/serviceregistry
+        image: ziedab/amsms-eureka-svc:1.0.0
         imagePullPolicy: Always
         ports:
         - containerPort: 8761
+        env:
+        - name: EUREKA_SERVER_ADDRESS
+          valueFrom:
+            configMapKeyRef:
+              name: eureka-cm
+              key: eureka_service_address        
         #          env:
         #            - name: EUREKA_INSTANCE_PREFERIPADDRESS
         #              value: "true"
