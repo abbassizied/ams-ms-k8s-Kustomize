@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: proxy-sts
+  namespace: ams-backend
+spec:
+  selector:
+    matchLabels:
+      app: proxy
+  serviceName: "proxy"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: proxy
+    spec:
+      containers:
+        - name: proxy
+          image: sipacademy2024/serviceproxy
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+          env:
+            - name: EUREKA_SERVICE_URL # This overrides your Spring Property
+              valueFrom:
+                configMapKeyRef:
+                  name: eureka-cm
+                  key: eureka_service_address
+            - name: EUREKA_INSTANCE_PREFER_IP_ADDRESS
+              value: "true"
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: proxy
+  namespace: ams-backend
+spec:
+  selector:
+    app: proxy
+  type: NodePort
+  ports:
+    - name: proxy
+      port: 80
+      targetPort: 8080
+      nodePort: 30150
