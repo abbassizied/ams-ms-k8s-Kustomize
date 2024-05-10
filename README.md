@@ -3,11 +3,11 @@
 ## steps in killercoda:
 
 ```sh
-$ git clone https://github.com/abbassizied/ams-ms-k8s-Kustomize.git
+$ git clone https://github.com/abbassizied/ams-ms-k8s-ziedab.git
 $ kubectl create namespace ams-database 
 $ kubectl create namespace ams-backend
 
-$ cd ams-ms-k8s-Kustomize
+$ cd ams-ms-k8s-ziedab
 
 # you can see the IP address of each pod with:
 $ kubectl get pods -o wide --all-namespaces
