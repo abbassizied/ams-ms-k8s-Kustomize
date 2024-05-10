@@ -16,17 +16,18 @@ spec:
     spec:
       containers:
         - name: proxy
-          image: sipacademy2024/serviceproxy
+          image: ziedab/amsms-gateway-svc:1.0.0
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
               containerPort: 8080
           env:
-            - name: EUREKA_SERVICE_URL # This overrides your Spring Property
+            # This overrides your Spring Property
+            - name: EUREKA_SERVER_ADDRESS
               valueFrom:
                 configMapKeyRef:
                   name: eureka-cm
-                  key: eureka_service_address
+                  key: eureka_service_address  
             - name: EUREKA_INSTANCE_PREFER_IP_ADDRESS
               value: "true"
 
