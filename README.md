@@ -7,7 +7,7 @@ $ git clone https://github.com/abbassizied/ams-ms-k8s-Kustomize.git
 $ kubectl create namespace ams-database 
 $ kubectl create namespace ams-backend
 
-$ cd ams-ms-on-k8s
+$ cd ams-ms-k8s-Kustomize
 
 # you can see the IP address of each pod with:
 $ kubectl get pods -o wide --all-namespaces
