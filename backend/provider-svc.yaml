@@ -43,7 +43,7 @@ spec:
         imagePullPolicy: IfNotPresent
         name: provider
         ports:
-        - containerPort: 8080
+        - containerPort: 8001
           name: http
 ---
 apiVersion: v1
