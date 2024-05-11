@@ -16,19 +16,18 @@ spec:
         app: eureka
     spec:
       containers:
-      - name: eureka
-        image: ziedab/amsms-eureka-svc:1.0.0 
-        ports:
-        - containerPort: 8761      
-        env:
+      - env:
         - name: EUREKA_SERVER_ADDRESS
           valueFrom:
             configMapKeyRef:
               key: eureka_service_address
               name: eureka-cm
-              
+        image: ziedab/amsms-eureka-svc:1.0.0
+        imagePullPolicy: Always
+        name: eureka
+        ports:
+        - containerPort: 8761
 ---
-# Comment out the following service to disable NodePort 
 apiVersion: v1
 kind: Service
 metadata:
@@ -43,7 +42,7 @@ spec:
   selector:
     app: eureka
   type: NodePort
-
+  
 # Uncomment the following service to use ClusterIP
 #apiVersion: v1
 #kind: Service
