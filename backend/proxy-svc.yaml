@@ -18,12 +18,7 @@ spec:
       - name: proxy
         image: ziedab/amsms-gateway-svc:1.0.0
         imagePullPolicy: IfNotPresent
-        env:
-        - name: EUREKA_SERVER_ADDRESS
-          valueFrom:
-            configMapKeyRef:
-              name: eureka-cm
-              key: eureka_service_address
+        env: 
         - name: EUREKA_INSTANCE_PREFER_IP_ADDRESS
           value: "true"
         ports:
