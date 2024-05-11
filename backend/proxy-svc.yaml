@@ -16,17 +16,17 @@ spec:
         app: proxy
     spec:
       containers:
-      - env:
+      - name: proxy
+        image: ziedab/amsms-gateway-svc:1.0.0
+        imagePullPolicy: IfNotPresent
+        env:
         - name: EUREKA_SERVER_ADDRESS
           valueFrom:
             configMapKeyRef:
-              key: eureka_service_address
               name: eureka-cm
+              key: eureka_service_address
         - name: EUREKA_INSTANCE_PREFER_IP_ADDRESS
           value: "true"
-        image: ziedab/amsms-gateway-svc:1.0.0
-        imagePullPolicy: IfNotPresent
-        name: proxy
         ports:
         - containerPort: 9092
           name: http
@@ -41,7 +41,7 @@ spec:
   - name: proxy
     nodePort: 30150
     port: 80
-    targetPort: 8080
+    targetPort: 9092  # Corrected targetPort to match the container port
   selector:
     app: proxy
   type: NodePort
