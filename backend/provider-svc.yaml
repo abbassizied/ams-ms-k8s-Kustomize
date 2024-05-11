@@ -37,8 +37,11 @@ spec:
             configMapKeyRef:
               name: database-cm
               key: provider_database_url
-        - name: EUREKA_INSTANCE_PREFER_IP_ADDRESS
-          value: "true"
+        - name: EUREKA_INSTANCE_HOSTNAME
+          valueFrom:
+            configMapKeyRef:
+              name: eureka-cm
+              key: eureka_service_hostname
 ---
 apiVersion: v1
 kind: Service
