@@ -4,7 +4,7 @@ metadata:
   name: eureka
   namespace: ams-backend
 spec:
-  serviceName: "eureka"
+  serviceName: eureka
   replicas: 1
   selector:
     matchLabels:
@@ -28,33 +28,34 @@ spec:
               key: eureka_service_address
 
 ---
-apiVersion: v1
-kind: Service
-metadata:
-  name: eureka-nodeport
-  namespace: ams-backend
-  labels:
-    app: eureka
-spec:
-  ports:
-  - nodePort: 31300
-    port: 8761
-  selector:
-    app: eureka
-  type: NodePort
+# Comment out the following service to disable NodePort 
+ apiVersion: v1
+ kind: Service
+ metadata:
+   name: eureka
+   namespace: ams-backend
+   labels:
+     app: eureka
+ spec:
+   ports:
+   - nodePort: 31300
+     port: 8761
+   selector:
+     app: eureka
+   type: NodePort
 
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: eureka
-  namespace: ams-backend
-  labels:
-    app: eureka
-spec:
-  clusterIP: None
-  ports:
-  - port: 8761
-    name: eureka
-  selector:
-    app: eureka
+# Uncomment the following service to use ClusterIP
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: eureka
+#  namespace: ams-backend
+#  labels:
+#    app: eureka
+#spec:
+#  clusterIP: None
+#  ports:
+#  - port: 8761
+#    name: eureka
+#  selector:
+#    app: eureka
