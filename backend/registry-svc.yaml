@@ -1,4 +1,3 @@
-# eureka
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -6,7 +5,6 @@ metadata:
   namespace: ams-backend
 spec:
   serviceName: "eureka"
-  # n instances
   replicas: 1
   selector:
     matchLabels:
@@ -18,7 +16,6 @@ spec:
     spec:
       containers:
       - name: eureka
-        #image: ziedab/amsms-eureka-svc:1.0.0
         image: bitinit/eureka
         imagePullPolicy: Always
         ports:
@@ -28,16 +25,13 @@ spec:
           valueFrom:
             configMapKeyRef:
               name: eureka-cm
-              key: eureka_service_address        
-        #          env:
-        #            - name: EUREKA_INSTANCE_PREFERIPADDRESS
-        #              value: "true"
+              key: eureka_service_address
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: eureka
+  name: eureka-nodeport
   namespace: ams-backend
   labels:
     app: eureka
@@ -64,4 +58,3 @@ spec:
     name: eureka
   selector:
     app: eureka
-  
