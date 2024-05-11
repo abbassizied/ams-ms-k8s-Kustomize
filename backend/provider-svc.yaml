@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: provider
-          image: sipacademy2024/serviceprovider
+          image: ziedab/amsms-provider-svc:1.0.0
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
@@ -37,11 +37,11 @@ spec:
                 configMapKeyRef:
                   name: database-cm
                   key: provider_database_url
-            - name: EUREKA_SERVICE_URL # This overrides your Spring Property
+            - name: EUREKA_SERVER_ADDRESS
               valueFrom:
                 configMapKeyRef:
-                  name: eureka-cm
                   key: eureka_service_address
+                  name: eureka-cm
             - name: EUREKA_INSTANCE_PREFER_IP_ADDRESS
               value: "true"
 
