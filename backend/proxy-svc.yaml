@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: proxy
-        image: sipacademy2024/serviceproxy
+        image: ziedab/amsms-gateway-svc
         imagePullPolicy: IfNotPresent
         env:
         - name: EUREKA_INSTANCE_HOSTNAME
