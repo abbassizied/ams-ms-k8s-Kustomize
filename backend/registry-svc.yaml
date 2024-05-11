@@ -16,12 +16,6 @@ spec:
         app: eureka
     spec:
       containers:
-      - env:
-        - name: EUREKA_SERVER_ADDRESS
-          valueFrom:
-            configMapKeyRef:
-              key: eureka_service_address
-              name: eureka-cm
         image: ziedab/amsms-eureka-svc:1.0.0
         imagePullPolicy: Always
         name: eureka
