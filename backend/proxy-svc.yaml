@@ -28,7 +28,7 @@ spec:
         imagePullPolicy: IfNotPresent
         name: proxy
         ports:
-        - containerPort: 8080
+        - containerPort: 9092
           name: http
 ---
 apiVersion: v1
