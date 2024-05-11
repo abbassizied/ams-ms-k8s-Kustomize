@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: article
-          image: sipacademy2024/servicearticle
+          image: ziedab/amsms-article-svc:1.0.0
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
