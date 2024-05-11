@@ -1,50 +1,50 @@
+---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: provider-sts
   namespace: ams-backend
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: provider
-  serviceName: "provider"
-  replicas: 1
+  serviceName: provider
   template:
     metadata:
       labels:
         app: provider
     spec:
       containers:
-        - name: provider
-          image: ziedab/amsms-provider-svc:1.0.0
-          imagePullPolicy: IfNotPresent
-          ports:
-            - name: http
-              containerPort: 8080
-          env:
-            - name: SPRING_DATASOURCE_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: backend-secrets
-                  key: database-username
-            - name: SPRING_DATASOURCE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: backend-secrets
-                  key: database-password
-            - name: SPRING_DATASOURCE_URL
-              valueFrom:
-                configMapKeyRef:
-                  name: database-cm
-                  key: provider_database_url
-            - name: EUREKA_SERVER_ADDRESS
-              valueFrom:
-                configMapKeyRef:
-                  key: eureka_service_address
-                  name: eureka-cm
-            - name: EUREKA_INSTANCE_PREFER_IP_ADDRESS
-              value: "true"
-
+      - env:
+        - name: SPRING_DATASOURCE_USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: database-username
+              name: backend-secrets
+        - name: SPRING_DATASOURCE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: database-password
+              name: backend-secrets
+        - name: SPRING_DATASOURCE_URL
+          valueFrom:
+            configMapKeyRef:
+              key: provider_database_url
+              name: database-cm
+        - name: EUREKA_SERVICE_URL
+          valueFrom:
+            configMapKeyRef:
+              key: eureka_service_address
+              name: eureka-cm
+        - name: EUREKA_INSTANCE_PREFER_IP_ADDRESS
+          value: "true"
+        image: sipacademy2024/serviceprovider
+        imagePullPolicy: IfNotPresent
+        name: provider
+        ports:
+        - containerPort: 8080
+          name: http
 ---
 apiVersion: v1
 kind: Service
@@ -53,14 +53,11 @@ metadata:
   namespace: ams-backend
 spec:
   clusterIP: None
+  ports:
+  - port: 80
+    targetPort: 8080
   selector:
     app: provider
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
-
-
 ---
 apiVersion: v1
 kind: Service
@@ -68,13 +65,10 @@ metadata:
   name: provider-svc
   namespace: ams-backend
 spec:
-  type: NodePort
+  ports:
+  - nodePort: 30100
+    port: 80
+    targetPort: 8080
   selector:
     app: provider
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
-      nodePort: 30100  # Choose an available nodePort value, or let Kubernetes assign one automatically
-
-      
+  type: NodePort
