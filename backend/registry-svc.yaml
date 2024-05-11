@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: eureka
-        image: sipacademy2024/serviceregistry
+        image: ziedab/amsms-eureka-svc
         ports:
         - containerPort: 8761
 
