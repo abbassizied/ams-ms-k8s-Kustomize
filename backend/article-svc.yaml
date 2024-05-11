@@ -37,13 +37,11 @@ spec:
                 configMapKeyRef:
                   name: database-cm
                   key: article_database_url
-            - name: EUREKA_SERVICE_URL # This overrides your Spring Property
-              valueFrom:
-                configMapKeyRef:
-                  name: eureka-cm
-                  key: eureka_service_address
-            - name: EUREKA_INSTANCE_PREFER_IP_ADDRESS
-              value: "true"
+        - name: EUREKA_INSTANCE_HOSTNAME
+          valueFrom:
+            configMapKeyRef:
+              name: eureka-cm
+              key: eureka_service_hostname
 
 ---
 apiVersion: v1
