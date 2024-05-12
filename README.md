@@ -26,3 +26,10 @@ $ kubectl get pods -n ams-backend
 $ kubectl get svc -n ams-backend 
 
 ```
+## services urls:
+
+```sh
+/providers/
+/articles/
+/swagger-ui/index.html
+```
