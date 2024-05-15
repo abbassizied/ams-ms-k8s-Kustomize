@@ -28,10 +28,10 @@
 
 # useful urls
 
-- **http://localhost:8001/providers/**:  [link](http://localhost:8001/providers/)
-- **http://localhost:8003/articles/**:  [link](http://localhost:8003/articles/)
-- **http://localhost:9092/providers/**:  [link](http://localhost:9092/providers/)
-- **http://localhost:9092/articles/**:  [link](http://localhost:9092/articles/)
+- ```http://localhost:8001/providers/```:  [link](http://localhost:8001/providers/)
+- ```http://localhost:8003/articles/```:  [link](http://localhost:8003/articles/)
+- ```http://localhost:9092/providers/```:  [link](http://localhost:9092/providers/)
+- ```http://localhost:9092/articles/```:  [link](http://localhost:9092/articles/)
 
 # Docker compose[up & run/down]
 
