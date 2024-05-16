@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: provider
-        image: ziedab/amsms-provider-svc
+        image: ziedab/sip-serviceprovider
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8001
