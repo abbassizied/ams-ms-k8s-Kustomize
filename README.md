@@ -6,6 +6,7 @@
 $ git clone https://github.com/abbassizied/ams-ms-k8s-ziedab.git
 $ kubectl create namespace ams-database 
 $ kubectl create namespace ams-backend
+$ kubectl create namespace ams-frontend
 
 $ cd ams-ms-k8s-ziedab
 
