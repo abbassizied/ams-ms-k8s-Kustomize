@@ -15,7 +15,7 @@ $ kubectl get pods -o wide --all-namespaces
 $ kubectl apply -f ./mysql 
 $ kubectl apply -f ./pma
 $ kubectl apply -f ./backend
-
+$ kubectl apply -f ./frontend
 
 $ kubectl get sts -n ams-database
 $ kubectl get pods -n ams-database
@@ -23,8 +23,10 @@ $ kubectl get svc -n ams-database
 
 $ kubectl get sts -n ams-backend
 $ kubectl get pods -n ams-backend
-$ kubectl get svc -n ams-backend 
+$ kubectl get svc -n ams-backend
 
+$ kubectl get pods -n ams-frontend
+$ kubectl get svc -n ams-frontend
 ```
 ## services urls:
 
