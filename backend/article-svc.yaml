@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: article
-          image: ziedab/amsms-article-svc
+          image: ziedab/sip-servicearticle
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
