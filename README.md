@@ -36,3 +36,15 @@ $ kubectl get svc -n ams-frontend
 /articles/
 /swagger-ui/index.html
 ```
+## Cleaning up
+
+```sh
+$ kubectl delete deployment -l app=xxx
+$ kubectl delete service -l app=xxx
+$ kubectl delete deployment frontend
+$ kubectl delete service frontend
+
+$ kubectl get pods
+# The response should look similar to this:
+# No resources found in default namespace. 
+```
