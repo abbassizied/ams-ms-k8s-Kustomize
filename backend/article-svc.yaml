@@ -37,11 +37,8 @@ spec:
                 configMapKeyRef:
                   name: database-cm
                   key: article_database_url
-            - name: EUREKA_INSTANCE_HOSTNAME
-              valueFrom:
-                configMapKeyRef:
-                  name: eureka-cm
-                  key: eureka_service_hostname
+            - name: SPRING_PROFILES_ACTIVE
+              value: "k8s"
 
 ---
 apiVersion: v1
