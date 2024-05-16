@@ -1,5 +1,29 @@
-kind: Service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: ziedab/ams-ms-front2024-k8s
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8081
+
+---
 apiVersion: v1
+kind: Service
 metadata:
   name: angular-np-svc
   namespace: ams-frontend
@@ -7,28 +31,7 @@ spec:
   selector:
     app: frontend
   ports:
-  - protocol: TCP
-    port: 8081
-    nodePort: 30001
+    - protocol: TCP
+      port: 8081
+      nodePort: 30888
   type: NodePort
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: frontend
-spec:
-  selector:
-      matchLabels:
-        app: frontend
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: frontend
-    spec:
-      containers:
-          image: ziedab/ams-ms-front2024-k8s
-          imagePullPolicy: Never
-          ports:
-            - containerPort: 8081
-
