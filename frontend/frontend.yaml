@@ -32,6 +32,7 @@ spec:
     app: frontend
   ports:
     - protocol: TCP
-      port: 8081
+      port: 80
+      targetPort: 80
       nodePort: 30888
   type: NodePort
